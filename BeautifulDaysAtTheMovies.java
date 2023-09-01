@@ -36,20 +36,40 @@ class Result {
         return revNum;
     }
 
+    // public static int beautifulDays(int i, int j, int k) {
+    // // Write your code here
+    // int count = 0;
+    // for (int num = i; num <= j; num++) {
+    // int revNum = getReverse(num);
+    // int diff = Math.abs(num - revNum);
+    // boolean isBeautifulDay = (diff % k == 0);
+    // if (isBeautifulDay == true) {
+    // count++;
+    // }
+    // }
+    // return count;
+    // }
+
+    // Alternate approach: w/ String methods
     public static int beautifulDays(int i, int j, int k) {
-        // Write your code here
         int count = 0;
-        for (int num = i; num <= j; num++) {
-            int revNum = getReverse(num);
-            int diff = Math.abs(num - revNum);
+        while (i <= j) {
+            // Generate reverse using StringBuilder's reverse
+            StringBuilder str = new StringBuilder();
+            str.append(i + "");
+            String s = str.reverse().toString(); // After reversing reconvert to String so we can parse it back to int
+
+            // Check for beautiful day
+            int diff = Math.abs(i - Integer.parseInt(s));
             boolean isBeautifulDay = (diff % k == 0);
             if (isBeautifulDay == true) {
                 count++;
             }
+
+            i++;
         }
         return count;
     }
-
 }
 
 // Use class name Solution in Hackerrank
